@@ -54,7 +54,7 @@ Validates the LI.FI API response logic, status codes, and data integrity.
 3. Performance Testing (k6)
 Simulates parallel swap requests to check for rate limits and system stability.
 
-# Run the performance script
+#### Run the performance script
 `k6 run tests/performance/quote.perf.ts`
 
 ## 🔧 Configuration Details
