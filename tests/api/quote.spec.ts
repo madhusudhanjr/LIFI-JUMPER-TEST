@@ -6,7 +6,6 @@ import { QuoteSchema } from '../../utils/schemas';
 
 test.describe('LI.FI Quote API - GET /v1/quote', () => {
   let lifi: LifiApi;
-  const fromAddress = ADDRESS.FROM_ADDRESS; // Dummy test address
   const ajv = new Ajv({ allErrors: true, verbose: true });
   const validate = ajv.compile(QuoteSchema);
 
@@ -25,7 +24,7 @@ test.describe('LI.FI Quote API - GET /v1/quote', () => {
       fromToken: TOKENS.USDC_ARBITRUM,
       toToken: TOKENS.WETH_ARBITRUM,
       fromAmount: '10000000', // 10 USDC
-      fromAddress,
+      fromAddress: ADDRESS.FROM_ADDRESS,
     });
     console.log(`Full Request URL: ${response.url()}`);
     const body = await response.json();
@@ -54,7 +53,7 @@ test.describe('LI.FI Quote API - GET /v1/quote', () => {
       fromToken: TOKENS.USDT_POLYGON,
       toToken: TOKENS.USDC_BASE,
       fromAmount: '20000000', // 20 USDT
-      fromAddress,
+      fromAddress: ADDRESS.FROM_ADDRESS,
     });
 
     const body = await response.json();
@@ -86,7 +85,7 @@ test.describe('LI.FI Quote API - GET /v1/quote', () => {
       fromToken: fromTokenInfo.address,
       toToken: toTokenInfo.address,
       fromAmount: '10000000', // 10 USDT
-      fromAddress: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
+      fromAddress: ADDRESS.FROM_ADDRESS,
     });
 
     const body = await response.json();
@@ -110,7 +109,7 @@ test.describe('LI.FI Quote API - GET /v1/quote', () => {
       fromToken: TOKENS.JOE_AVALANCHE,
       toToken: TOKENS.OP_OPTIMISM,
       fromAmount: '100000000000000000000', // 100 JOE
-      fromAddress,
+      fromAddress: ADDRESS.FROM_ADDRESS,
     });
 
     const body = await response.json();
@@ -136,7 +135,7 @@ test.describe('LI.FI Quote API - GET /v1/quote', () => {
       fromToken: TOKENS.USDC_ARBITRUM,
       toToken: TOKENS.WETH_ARBITRUM,
       fromAmount: '1000000',
-      fromAddress,
+      fromAddress: ADDRESS.FROM_ADDRESS,
       slippage: '0.005',
       integrator: 'lifi-api'
     });
@@ -197,7 +196,7 @@ test.describe('LI.FI Quote API - GET /v1/quote', () => {
       fromToken: TOKENS.USDC_ARBITRUM,
       toToken: TOKENS.USDC_OPTIMISM,
       fromAmount: '1000000000', // 1000 USDC
-      fromAddress,
+      fromAddress: ADDRESS.FROM_ADDRESS,
     });
 
     const data = await response.json();
@@ -228,7 +227,7 @@ test.describe('LI.FI Quote API - GET /v1/quote', () => {
       fromToken: TOKENS.ETH_MAINNET, // Native ETH
       toToken: TOKENS.USDC_ARBITRUM,
       fromAmount: '10000000000000000', // 0.01 ETH
-      fromAddress,
+      fromAddress: ADDRESS.FROM_ADDRESS,
     });
 
     expect(response.status()).toBe(200);
@@ -248,7 +247,7 @@ test.describe('LI.FI Quote API - GET /v1/quote', () => {
       fromToken: TOKENS.USDC_ARBITRUM, 
       toToken: TOKENS.USDC_OPTIMISM,
       fromAmount: '10000000', 
-      fromAddress,
+      fromAddress: ADDRESS.FROM_ADDRESS,
     });
 
     expect(response.status()).toBe(200);
@@ -289,7 +288,7 @@ test.describe('LI.FI Quote API - GET /v1/quote', () => {
       fromToken: TOKENS.USDC_ETH,
       toToken: TOKENS.WBTC_OPTIMISM,
       fromAmount: '1', // 0.000001 USDT - too low for bridge fees
-      fromAddress: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
+      fromAddress: ADDRESS.FROM_ADDRESS,
     });
 
     const body = await response.json();
@@ -311,7 +310,7 @@ test.describe('LI.FI Quote API - GET /v1/quote', () => {
       fromToken: TOKENS.USDC_ARBITRUM,
       toToken: TOKENS.ETH_MAINNET,
       fromAmount: '1000000',
-      fromAddress,
+      fromAddress: ADDRESS.FROM_ADDRESS,
     });
 
     const body = await response.json();
@@ -331,7 +330,7 @@ test.describe('LI.FI Quote API - GET /v1/quote', () => {
       fromToken: TOKENS.JOE_AVALANCHE,
       toToken: TOKENS.USDT_POLYGON,
       fromAmount: '1000000000000000000000000000', // 1 Billion JOE
-      fromAddress,
+      fromAddress: ADDRESS.FROM_ADDRESS,
     });
 
     const body = await response.json();
@@ -354,7 +353,7 @@ test.describe('LI.FI Quote API - GET /v1/quote', () => {
       fromToken: TOKENS.USDC_ARBITRUM,
       toToken: '0x000000000000000000000000000000000000dead', // Burn address/Unsupported
       fromAmount: '10000000',
-      fromAddress,
+      fromAddress: ADDRESS.FROM_ADDRESS,
     });
 
     const body = await response.json();
@@ -377,7 +376,7 @@ test.describe('LI.FI Quote API - GET /v1/quote', () => {
       fromToken: TOKENS.USDC_ARBITRUM,
       toToken: TOKENS.WETH_ARBITRUM,
       fromAmount: '0', // Zero amount
-      fromAddress,
+      fromAddress: ADDRESS.FROM_ADDRESS,
     });
 
     const body = await response.json();
@@ -399,7 +398,7 @@ test.describe('LI.FI Quote API - GET /v1/quote', () => {
       fromToken: TOKENS.USDC_ARBITRUM,
       toToken: TOKENS.WETH_ARBITRUM,
       fromAmount: '-1000000', // Negative amount
-      fromAddress,
+      fromAddress: ADDRESS.FROM_ADDRESS,
     });
 
     const body = await response.json();

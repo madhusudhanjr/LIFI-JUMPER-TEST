@@ -4,7 +4,6 @@ import { ADDRESS, BRIDGES, CHAINS, TOKENS } from '../../utils/constants';
 
 test.describe('LI.FI Advanced Routes API - POST /v1/advanced/routes', () => {
   let lifi: LifiApi;
-  const fromAddress = ADDRESS.FROM_ADDRESS;
 
   test.beforeEach(async ({ request }) => {
     lifi = new LifiApi(request);
@@ -22,7 +21,7 @@ test.describe('LI.FI Advanced Routes API - POST /v1/advanced/routes', () => {
       fromTokenAddress: TOKENS.USDC_ARBITRUM,
       toTokenAddress: TOKENS.USDT_ETH,
       fromAmount: '10000000', // 10 USDC
-      fromAddress,
+      fromAddress: ADDRESS.FROM_ADDRESS,
       options: { order: 'FASTEST' }
     });
 
@@ -47,7 +46,7 @@ test.describe('LI.FI Advanced Routes API - POST /v1/advanced/routes', () => {
       fromTokenAddress: TOKENS.USDC_POLYGON,
       toTokenAddress: TOKENS.USDC_BASE,
       fromAmount: '50000000',
-      fromAddress,
+      fromAddress: ADDRESS.FROM_ADDRESS,
       options: { order: 'CHEAPEST' }
     });
 
@@ -134,7 +133,7 @@ test.describe('LI.FI Advanced Routes API - POST /v1/advanced/routes', () => {
       fromTokenAddress: TOKENS.ETH_MAINNET, // Native ETH
       toTokenAddress: TOKENS.FAKE_TOKEN, // Fake Token
       fromAmount: '1000000000000000000',
-      fromAddress
+      fromAddress: ADDRESS.FROM_ADDRESS
     });
 
     const body = await response.json();
