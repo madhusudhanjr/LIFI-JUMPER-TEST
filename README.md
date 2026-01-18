@@ -20,7 +20,9 @@ The project is structured to separate concerns while sharing global configuratio
 ├── playwright.config.ts  # Playwright multi-project configuration
 └── package.json          # Dependencies and script shortcuts
 
-🛠 Setup & Installation
+---
+
+## 🛠 Setup & Installation
 1. Prerequisites
   Node.js: v18+ (LTS recommended)
   k6: Install k6 locally to run performance scripts.
