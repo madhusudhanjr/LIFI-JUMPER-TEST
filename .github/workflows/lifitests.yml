@@ -1,0 +1,50 @@
+name: CI/CD Test Suite
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  # Job 1: Functional Testing (UI & API)
+  functional-tests:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Playwright Tests
+      run: npx playwright test
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+
+  # Job 2: Performance Testing (k6) (OPtional)
+  performance-tests:
+    runs-on: ubuntu-latest
+    # only run performance tests if functional tests pass
+    needs: functional-tests 
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Run k6 Load Test
+      uses: grafana/run-k6-action@v1
+      with:
+        path: tests/performance/quote.perf.ts
+        # You can pass extra flags like duration here
+        flags: --vus 10 --duration 20s 
+
+    - name: Upload Performance Summary
+      uses: actions/upload-artifact@v4
+      with:
+        name: k6-results
+        path: summary.json
